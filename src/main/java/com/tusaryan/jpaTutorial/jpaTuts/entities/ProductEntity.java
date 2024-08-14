@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
  * none -> when we don't want to change anything when our entites update
  * validate/none -> in production
  * update/create/create-drop-> in development phase
- *
+ *Assume JPA similar to interfaces in java with set of rule and specifications.
  * spring.jpa.show-sql=true -> to show all the queries hibernate is creating on our behalf
  * spring.jpa.properties.hibernate.format_sql=true -> to format all the query in readable form.
  * spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect  (Optional-> since spring data jpa can autodetect the dialect corresponding to the database connection provided in your classpath). Dialect -> it is something that defines the rule the hibernate use to convert jpql to the corresponding query language.
@@ -49,7 +49,7 @@ import java.time.LocalDateTime;
                 @Index(name = "sku_index", columnList = "sku") //for multiple columnList = "sku", ""
         }
 )  //name field generally changes the name of database field different from that of java object/variable/class
-public class Product {
+public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
