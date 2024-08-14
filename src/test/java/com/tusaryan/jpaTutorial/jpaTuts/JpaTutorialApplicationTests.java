@@ -38,7 +38,7 @@ class JpaTutorialApplicationTests {
 	void getRepository() {
 //		List<ProductEntity> entities = productRepository.findByTitleOrderByPrice("Pepsi");
 
-//		List<ProductEntity> entities = productRepository.findByCreatedAtAfter(
+//		List<ProductEntity> entities = productRepository.findByCreatedAtAfterOrderByTitle(
 //				LocalDateTime.of(2025, 1, 1, 0, 0, 0));
 //		List<ProductEntity> entities = productRepository.findByQuantityGreaterThanOrPriceLessThan(4, BigDecimal.valueOf(23.45));
 
@@ -46,7 +46,7 @@ class JpaTutorialApplicationTests {
 		// so to match whether "Choco" is contained in/part of the String, we've to use wildcard character % at start and end.
 //		List<ProductEntity> entities = productRepository.findByTitleLike("%Choco%");
 		//or
-		List<ProductEntity> entities = productRepository.findByTitleContainingIgnoreCase("CHOco");
+		List<ProductEntity> entities = productRepository.findByTitleContainingIgnoreCase("CHOco", null);
 		System.out.println(entities);
 	}
 

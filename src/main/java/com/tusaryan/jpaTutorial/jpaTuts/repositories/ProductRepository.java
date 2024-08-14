@@ -1,6 +1,8 @@
 package com.tusaryan.jpaTutorial.jpaTuts.repositories;
 
 import com.tusaryan.jpaTutorial.jpaTuts.entities.ProductEntity;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -14,16 +16,22 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     //Can use Auto generation methods defined inside JPA for queries.
-    List<ProductEntity> findByTitleOrderByPrice(String title);
+//    List<ProductEntity> findByOrderByPrice();//if we don't want to pass any field (i.e. want to check in all field) then we can use findBy instead of findAll
+    //Above was a tightly coupled code so, if you want to sort by other field your have to write different code so to overcome this use the below method
+
+    //now we are loosely coupled
+//    List<ProductEntity> findByTitle(Sort sort);
+
 
     //use camel case to name here, like variable name in java object was "createdAt" -> CreatedAt
-    List<ProductEntity> findByCreatedAtAfter(LocalDateTime after);
+    List<ProductEntity> findByCreatedAtAfterOrderByTitle(LocalDateTime after);
 
     List<ProductEntity> findByQuantityGreaterThanOrPriceLessThan(int quantity, BigDecimal price);
 
     List<ProductEntity> findByTitleLike(String title);
 
-    List<ProductEntity> findByTitleContainingIgnoreCase(String title);
+    // we can also pass pageable to all auto generated function created by hibernate and instead of a Pageable it will return a List Object
+    List<ProductEntity> findByTitleContainingIgnoreCase(String title, Pageable pageable);
 
 //    Optional<ProductEntity> findByTitleAndPrice(String title, BigDecimal price);
     //Using Optional to handle null pointer exception
